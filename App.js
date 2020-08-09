@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import * as Font from "expo-font";
@@ -9,7 +8,6 @@ import StartGameScreen from "./screen/StartGameScreen";
 import GameScreen from "./screen/GameScreen";
 import GameOverScreen from "./screen/GameOverScreen";
 
-//loading fonts
 const fetchFonts = () => {
   return Font.loadAsync({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
@@ -27,14 +25,12 @@ export default function App() {
       <AppLoading
         startAsync={fetchFonts}
         onFinish={() => setDataLoaded(true)}
-        onError={(err) => {
-          console.log(err);
-        }}
+        onError={(err) => console.log(err)}
       />
     );
   }
 
-  const configureNewGameHnadler = () => {
+  const configureNewGameHandler = () => {
     setGuessRounds(0);
     setUserNumber(null);
   };
@@ -58,16 +54,15 @@ export default function App() {
       <GameOverScreen
         roundsNumber={guessRounds}
         userNumber={userNumber}
-        onRestart={configureNewGameHnadler}
+        onRestart={configureNewGameHandler}
       />
     );
   }
 
   return (
     <View style={styles.screen}>
-      <Header title="Guess Number" />
+      <Header title="Guess a Number" />
       {content}
-      <StatusBar style="auto" />
     </View>
   );
 }
